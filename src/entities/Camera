@@ -1,0 +1,44 @@
+package entities;
+
+public class Camera {
+
+	private float[] pos;
+	private float pitch;
+	private float yaw;
+	
+	public Camera() {
+		pos = new float[] {0.0f, 0.0f, 0.0f};
+	}
+	
+	public void move(int direction) {
+		
+	}
+	
+	public void moveTo(float[] toPos) {
+		pos = toPos;
+	}
+	
+	public float[] getPos() {
+		return pos;
+	}
+	
+	public float getX() {
+		return pos[0];
+	}
+	
+	public float getY() {
+		return pos[1];
+	}
+	
+	public float getZ() {
+		return pos[2];
+	}
+	
+	public float getPitch() {
+		return pitch;
+	}
+	
+	public float getYaw() {
+		return yaw;
+	}
+}
