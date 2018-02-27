@@ -1,0 +1,37 @@
+package renderEngine;
+
+import entities.Camera;
+import entities.Function;
+
+public class Grapher {
+
+	private Camera cam;
+	
+	public static void plotPoints(Function func) {
+		func.calculatePoints();
+	}
+
+	public static float[] transform(float[] p, float[] camPos) {
+
+		float camX = camPos[0];
+		float camY = camPos[1];
+		float camZ = camPos[2];
+
+		float[][] tMatrix = {
+				{ (float) (-camY / Math.sqrt(camX * camX + camY * camY)),
+						(float) (camX / Math.sqrt(camX * camX + camY * camY)), 0.0f },
+				{ (float) (-camX / Math.sqrt(camX * camX + camY * camY + camZ * camZ)),
+						(float) (-camY / Math.sqrt(camX * camX + camY * camY + camZ * camZ)),
+						(float) (-camZ / Math.sqrt(camX * camX + camY * camY + camZ * camZ)) },
+				{ (float) (-camX * camZ/ Math.sqrt((camX * camX + camY * camY) * (camX * camX + camY * camY + camZ * camZ))),
+						(float) (-camY * camZ/ Math.sqrt((camX * camX + camY * camY) * (camX * camX + camY * camY + camZ * camZ))),
+						(float) (Math.sqrt((camX * camX + camY * camY) / (camX * camX + camY * camY + camZ * camZ))) } };
+
+		float x, y, z;
+		x = tMatrix[0][0] * p[0] + tMatrix[0][1] * p[1] + tMatrix[0][2] * p[2];
+		y = tMatrix[1][0] * p[0] + tMatrix[1][1] * p[1] + tMatrix[1][2] * p[2];
+		z = tMatrix[2][0] * p[0] + tMatrix[2][1] * p[1] + tMatrix[2][2] * p[2];
+
+		return new float[] { x, y, z };
+	}
+}
