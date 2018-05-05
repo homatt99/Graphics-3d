@@ -1,9 +1,5 @@
 #include "shader.h"
 #include <GL/glew.h>
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
 
 Shader::Shader(const char* vsPath, const char* fsPath) {
 	std::string vCode;
